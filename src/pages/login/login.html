@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            登录HAOO
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="login">
+    <div class="loginImg">
+        <img src="img/login.png" />
+    </div>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label>帐号</ion-label>
+                <ion-input type="text" name="email" placeholder="请输入您的邮箱帐号" [(ngModel)]="email" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>密码</ion-label>
+                <ion-input type="password" name="password" placeholder="请输入您的密码" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+            <!--<ion-item>
+                <ion-label>角色</ion-label>
+                <ion-select [(ngModel)]="type">
+                    <ion-option value="distributor">分销商</ion-option>
+                    <ion-option value="buyer">买手</ion-option>
+                </ion-select>
+            </ion-item>-->
+        </ion-list>
+        <div padding>
+            <button ion-button type="submit" block>登录</button>
+        </div>
+    </form>
+    <div class="loginText">
+        你没有帐号？
+    </div>
+    <div padding>
+        <button ion-button class="registerButton" block (click)="register()">注册</button>
+    </div>
+    <div class="tip" (click)="findPassword()">
+        忘记密码
+    </div>
+</ion-content>

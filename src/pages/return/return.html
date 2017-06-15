@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{type === "goods"?"退货管理":"退款管理"}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let order of orders">
+        <ion-card-header style="padding:4px;">
+            <label class="  pull-left buyer">jimmyLiu</label>
+
+            <label class="label label-danger pull-right "> 已申请</label>
+        </ion-card-header>
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail item-left *ngFor="let itm of order.items">
+                    <img src="{{itm.url}}">
+                </ion-thumbnail>
+                <h2 *ngIf="order.items.length === 1">{{order.items[0].title}}</h2>
+                <p *ngIf="order.items.length === 1">价格:<label class="color_red">{{order.items[0].price}}</label></p>
+
+            </ion-item>
+        </ion-list>
+        <!--<ion-card-footer>
+            <span class="pull-left">共{{order.items.length}}件商品 退款金额：<a class="price_sum">¥20</a></span><br/>
+            <span class="pull-left">退款申请时间:20160909 11:49</span>
+            <button class="pull-right" small style="margin-top:-0.5em" (click)="viewDetails(order)">详情</button>
+        </ion-card-footer>-->
+    </ion-card>
+
+</ion-content>

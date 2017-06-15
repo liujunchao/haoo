@@ -1,0 +1,100 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="!readOnly">
+            申请退货
+        </ion-title>
+        <ion-title *ngIf="readOnly">
+            退货明细
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="save order-return">
+    <div class="title">
+        <span>服务单号：{{order_id}}</span>
+        <label class="order-status">{{order_type_name}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc ">申请时间</label>
+        <label class="amount">{{add_time}}</label>
+    </div>
+    <div class="title titleGap">
+        收件人信息
+    </div>
+    <div *ngIf="address!=null" class="addressPanel">
+        <svg class="icon location" aria-hidden="true"> <use xlink:href="#icon-location1"></use> </svg>
+        <div class="addressInfo">
+            <p class="userInfo">{{address.name}} <label item-right>{{address.phone}}</label></p>
+            <p class="userAddress">{{address.zone}}{{address.city}}{{address.district}}{{address.address}}</p>
+        </div>
+    </div>
+    <div class="title titleGap">
+        商品信息
+    </div>
+    <div *ngFor="let cart of cartList">
+        <div class="product_card">
+            <div>
+                <img src="{{cart.image}}" style=" width:8rem;height:7.5rem;">
+            </div>
+            <div class="detailsBox">
+                <p class="product_title">{{cart.title}}</p>
+                <p class="state_comment">
+                    <span *ngFor="let option of cart.options">
+                                {{option.option_name}}：{{option.option_value_name}} 
+                    </span>
+                </p>
+                <div>
+                    <label class="color_red price">价格：{{cart.price|fixed}} </label>
+                    <span class="quantity">数量：X{{cart.quantity}}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="bg-transparent return-line">
+            <span class="desc">申请数量</span>
+            <cart-qty [qty]="cart" *ngIf="!readOnly"></cart-qty>
+            <span class="amount" *ngIf="readOnly">
+                {{cart.return_quantity}}
+            </span>
+        </div>
+        <div class="bg-transparent return-line">
+            <span class="desc">退款金额（元）：</span>
+            <input class="hiddenInput" type="number" placeholder="请输入退款金额" [(ngModel)]="cart.return_money" *ngIf="!readOnly" />
+            <span class="amount" *ngIf="readOnly">
+                {{cart.return_money|fixed}}
+            </span>
+        </div>
+        <div class="bg-transparent return-line" *ngIf="!readOnly">
+            <span class="desc align-right">退款总额：{{getReturnTotalAmount(cart)|fixed}}</span>
+        </div>
+    </div>
+
+    <div class="title titleGap">
+        问题描述
+    </div>
+    <textarea [disabled]="readOnly" placeholder="请填写退款原因反馈给我们，以便我们更好的服务于你！" [(ngModel)]="reason"></textarea>
+    <div class="title">
+        上传照片
+    </div>
+    <img-list [data]="imgList" *ngIf="!readOnly"></img-list>
+    <img-list [data]="imgList" *ngIf="readOnly" [isReadOnly]="'1'"></img-list>
+    <div class="title">
+        备注
+    </div>
+    <textarea [disabled]="readOnly" placeholder="请填写备注" [(ngModel)]="note"></textarea>
+    <div class="title titleGap">
+        退货物流
+    </div>
+    <div class="return-line">
+        <span class="desc">物流商：</span>
+        <input class="hiddenInput" type="text" placeholder="物流商" [(ngModel)]="back_provider" [disabled]="readOnly" />
+    </div>
+    <div class="return-line">
+        <span class="desc">跟踪单号：</span>
+        <input class="hiddenInput" type="text" placeholder="跟踪单号" [(ngModel)]="back_order" [disabled]="readOnly" />
+    </div>
+
+    <div padding *ngIf="!readOnly">
+        <button (click)="applyReturn()" block>提交申请</button>
+    </div>
+</ion-content>

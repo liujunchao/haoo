@@ -1,0 +1,62 @@
+<product-detail></product-detail>
+
+<ion-content class="categoryProducts">
+
+    <header>
+        <ion-icon class="back-button-icon ion-ios-arrow-back" (click)="leave()"></ion-icon>
+        <div class="input-group search">
+            <input type="text" [(ngModel)]="searchContent" class="form-control" placeholder="输入关键字快速查询">
+            <div class="input-group-addon" (click)="goSearch()">search</div>
+        </div>
+    </header> 
+    <div class="categoryHeader">
+        <a class="queryInfo" *ngIf="isCategory">所有分类 &gt; <span>{{category.name}}</span></a>
+        <a class="queryInfo" *ngIf="!isCategory">{{totalCount}}个结果</a>
+        <span class="priceFilter" (click)="showFilterDlg($event)">价格筛选  <ion-icon class="ion-ios-arrow-down"></ion-icon></span>
+    </div>
+    <div class="product_card_container">
+        <div class="product_card" *ngFor="let cart of cartList">
+            <div>
+                <svg class="icon" aria-hidden="true" (click)="downloadImage(cart.image)"> <use xlink:href="#icon-download" ></use> </svg>
+                <img src="{{cart.image}}" (click)="gotoProductDetail(cart)">
+            </div>
+            <div class="detailsBox">
+                <p class="product_title">{{cart.title}}</p>
+                <div class="discount" *ngIf="cart.discount_start_time!=''&& cart.discount_end_time!=''">折扣时间：{{cart.discount_start_time}}-{{cart.discount_end_time}}</div>
+
+                <div>
+                    <label class="color_red price"> {{cart.price|fixed}} </label>
+                    <span class="selected_quantity color_red" *ngIf="cart.selected_quantity>0">X{{cart.selected_quantity}}</span>
+                    <!--<cart-qty [qty]="cart"></cart-qty>-->
+                    <button small class="addToCart" (click)="addToCart(cart)"> <ion-icon name="ios-add" ></ion-icon> 添加 </button>
+                </div>
+            </div>
+        </div> 
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多商品中">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll> 
+    </div>
+    <div *ngIf="cartList.length===0" class="panel-nothing"> 
+        <div class="panel-nothing-inner">
+            <div class="nothing-img">
+                <svg class="icon" aria-hidden="true"> 
+                    <use xlink:href="#icon-connection_failed"></use> 
+                </svg>
+            </div>
+            <div>抱歉，没有对应的商品信息</div> 
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer class="footer">
+    <div class="summary">
+        共{{quantity_total}}件
+    </div>
+    <div class="totalAmount">
+        共{{products_total}}元
+    </div>
+    <div class="purchase" (click)="goSavePage()">
+        已选好
+    </div>
+</ion-footer>

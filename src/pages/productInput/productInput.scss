@@ -1,0 +1,35 @@
+.productInput {
+    .imgAdd {
+        width: 80%;
+    }
+    .labelText {
+        color: #999;
+        font-weight: normal;
+        position: relative;
+        top: -1rem;
+    }
+    textarea {
+        width: 17rem;
+        height: 6rem;
+    }
+    .size_table {
+        display: inline;
+        color: #999;
+        td {
+            padding: 0.4rem;
+        }
+        input {
+            width: 3.8rem;
+            height: 2.7rem;
+        }
+    }
+    .scaner {
+        color: red;
+        margin-right: 10rem;
+        float: right;
+    }
+    .rescaner {
+        color: red;
+        float: right;
+    }
+}

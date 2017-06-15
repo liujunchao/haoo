@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title class="align-center">
+            <span *ngIf="source !== 'rebuy'">已选好的商品</span>
+            <span *ngIf="source === 'rebuy'">再购买</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="save">
+    <div class="title">
+        收件人信息
+    </div>
+    <div *ngIf="address!=null && address!==''" class="addressPanel">
+        <svg class="icon location" aria-hidden="true"> <use xlink:href="#icon-location1"></use> </svg>
+        <div class="addressInfo">
+            <p class="userInfo">{{address.name}} <label item-right>{{address.phone}}</label></p>
+            <p class="userAddress">{{address.zone}}{{address.city}}{{address.district}}{{address.address}}</p>
+        </div>
+        <ion-icon class="arrow-right" name="arrow-forward" item-right (click)="addressEdit()"></ion-icon>
+
+    </div>
+    <div *ngIf="address==null ||address==''" class="newAddressPanel">
+        <button ion-button outline round block (click)="addressEdit()">新建地址</button>
+    </div>
+ 
+ 
+
+    <div class="title titleGap">
+        商品信息
+    </div>
+    <div class="product_card" *ngFor="let cart of cartList">
+        <div>
+            <ion-checkbox [(ngModel)]="cart.isSelected" (click)="cartCheckedStateChange(cart)" [disabled]="cart.status===0"></ion-checkbox>
+
+        </div>
+        <div class="relative">
+            <img src="{{cart.image}}">
+            <span class="on-shelf" *ngIf="cart.status==0">已下架</span>
+        </div>
+        <div class="detailsBox">
+            <p class="product_title">{{cart.title}}</p>
+            <p class="state_comment">
+                <span *ngFor="let option of cart.options">
+                    {{option.option_name}}：{{option.option_value_name}} 
+                </span>
+            </p>
+            <div>
+                <label class="color_red price"> {{cart.price |fixed}}</label>
+                <ion-icon name="ios-trash-outline" class="trash" (click)="deleteSelectedCart(cart)" *ngIf="source!=='rebuy'"></ion-icon>
+
+                <cart-qty [qty]="cart" [setOperation]="'selectedCart'" (qtyChange)="changeQuantity($event)" *ngIf="source!=='rebuy'&& source!=='cart'"></cart-qty>
+                <cart-qty [qty]="cart" (qtyChange)="rebuyCaculateAmount()" *ngIf="source==='rebuy'"></cart-qty>
+                <cart-qty [qty]="cart" (qtyChange)="changeQuantity($event)" [setOperation]="'cart'" *ngIf="source==='cart'"></cart-qty>
+            </div>
+        </div>
+    </div>
+    <div class="order-footer">
+        <label class="desc">商品金额</label>
+        <label class="amount">{{products_total}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc">运费</label>
+        <label class="amount">{{shipfee}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc ">总计</label>
+        <label class="amount">{{grand_total}}</label>
+    </div>
+</ion-content>
+
+
+ 
+<ion-footer class="save_footer">
+    <div class="summary">
+        <ion-checkbox [(ngModel)]="allSelected" (ionChange)="checkedStateChange()"></ion-checkbox>
+        <span>全选 共{{quantity_total}}件</span>
+    </div>
+    <div class="purchase" (click)="payment()">
+        立即支付
+    </div>
+    <div class="warning" (click)="addToCarts()" *ngIf="source==''||source==undefined">
+        加入购物车
+    </div>
+
+</ion-footer>

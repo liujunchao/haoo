@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{order.status === "paid"?"已支付订单":(order.status === "delivery"?"已发货订单":"")}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="cart">
+    <ion-list>
+        <ion-item>
+            <div>
+                <span>订单编号:<b>123343423425345</b></span>
+                <span class="label label-danger pull-right" style="margin:1rem">未发货</span>
+            </div>
+            <div>
+                <span>下单时间:20160909  10：33</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <h2>收货人信息</h2>
+            <p>张三 <label item-right>13754896525</label></p>
+            <p>甘肃省会宁县老君坡乡柳岔村下队社</p>
+        </ion-item>
+
+    </ion-list>
+    <table class="table  table-striped" radio-group>
+        <thead>
+            <th class="align_center" style="width:40%">名称</th>
+            <th class="align_center" style="width:30%">数量</th>
+            <th class="align_center" style="width:20%">金额</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cart of cartList">
+                <td>
+
+                    <img src="{{cart.url}}" style="width:2rem;height:2rem;display:inline;">
+                    <em>{{cart.title}}</em>
+                </td>
+                <td class="align_center">
+                    {{cart.quantity}}
+                </td>
+                <td style=" color:red" class="align_center align_vertical">¥{{cart.price}}</td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="totaldesc">退款金额:<label class="total">{{getTotalAmount()}}</label></td>
+            </tr>
+        </tfoot>
+    </table>
+    <div>退款原因：<br/><textarea style="width:100%; height:10rem;"></textarea></div>
+</ion-content>
+<ion-footer>
+    <button full (click)="submit()">
+        提交
+    </button>
+</ion-footer>

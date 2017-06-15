@@ -1,0 +1,19 @@
+# Specifies files to intentionally ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+www/.chcpenv
+www/chcp.json
+www/chcp.mainifest
+node_modules/
+www/build/
+platforms/android/platform_www
+platforms/android/build
+platforms/android/assets
+platforms/android/.gradle
+platforms/android/.idea
+platforms/android/cordova
+platforms/android/CordovaLib
+plugins/
+*.swp
+.DS_Store
+Thumbs.db

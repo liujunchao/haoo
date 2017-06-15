@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            订单详情
+
+        </ion-title>
+        <span (click)="setEditMode()" class="operation-right" *ngIf="order_type==='4'">售后</span>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="save">
+    <div class="title">
+        <span>服务单号：{{order_id}}</span>
+        <label class="order-status">{{order_type_name}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc ">申请时间</label>
+        <label class="amount">{{add_time}}</label>
+    </div>
+    <div class="title titleGap">
+        收件人信息
+    </div>
+    <div *ngIf="address!=null" class="addressPanel">
+        <svg class="icon location" aria-hidden="true"> <use xlink:href="#icon-location1"></use> </svg>
+        <div class="addressInfo">
+            <p class="userInfo">{{address.name}} <label item-right>{{address.phone}}</label></p>
+            <p class="userAddress">{{address.zone}}{{address.city}}{{address.district}}{{address.address}}</p>
+        </div>
+        <!--<ion-icon class="arrow-right" name="arrow-forward" item-right (click)="addressEdit()"></ion-icon>-->
+
+    </div>
+    <!--<div *ngIf="address==null">
+        <button ion-button outline round block>新建地址</button>
+    </div>-->
+
+
+    <div class="title titleGap">
+        商品信息
+    </div>
+    <div class="product_card" *ngFor="let cart of cartList">
+        <div *ngIf="isEditMode">
+            <ion-checkbox [(ngModel)]="cart.isSelected"></ion-checkbox>
+        </div>
+        <div class="relative">
+            <img src="{{cart.image}}">
+            <span class="on-shelf" *ngIf="cart.delivery==0 && order_type==5">未发货</span>
+            <span class="on-shelf bgcolor_gray" *ngIf="cart.delivery==1 && order_type==5">已发货</span>
+        </div>
+        <div class="detailsBox">
+            <p class="product_title">{{cart.title}}</p>
+            <p class="state_comment"> 
+                <span *ngFor="let option of cart.options">
+                     {{option.option_name}}：{{option.option_value_name}} 
+                </span>
+            </p>
+            <div>
+                <label class="color_red price"> {{cart.price|fixed}} </label>
+            </div>
+        </div>
+    </div>
+    <div class="return-line" *ngIf="isEditMode">
+        <div class="summary">
+            <ion-checkbox [(ngModel)]="allSelected" (ionChange)="checkedStateChange()"></ion-checkbox>
+            <span>全选  共{{getCheckoutQty()}}件</span>
+        </div>
+        <div class="return" (click)="applyReturn()">
+            申请退货
+        </div>
+    </div>
+
+    <div class="order-footer titleGap">
+        <label class="desc">商品金额</label>
+        <label class="amount">{{products_total|fixed}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc">运费</label>
+        <label class="amount">{{shipfee|fixed}}</label>
+    </div>
+    <div class="order-footer">
+        <label class="desc ">总计</label>
+        <label class="amount">{{grand_total|fixed}}</label>
+    </div>
+</ion-content>
+<!--
+<ion-footer class="save_footer">
+
+    <div class="summary">
+        实付款{{grand_total}}元
+    </div>
+    <div class="warning" (click)="cancel()">
+        取消订单
+    </div>
+    <div class="purchase" (click)="payment()">
+        立即支付
+    </div>
+</ion-footer>-->

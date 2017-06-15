@@ -1,0 +1,168 @@
+.cart {
+    @include panelbg();
+    .userInfo {
+        font-size: 1.5rem;
+    }
+    .userAddress {
+        font-size: 1.4rem;
+        color: $not-important-font-color;
+    }
+    .totaldesc {
+        text-align: right;
+        .total {
+            color: red;
+            text-align: right;
+        }
+    }
+    .product_title {
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        color: #626466;
+    }
+    .state_comment {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        color: #c4c8cc;
+        span {
+            margin-right: 1rem;
+        }
+    }
+    .product_card {
+        border-bottom: solid 1px #dce2e6;
+        background-color: white;
+        padding-top: 2.4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        flex: 1;
+        display: flex;
+        margin-bottom: 1rem;
+        .download {
+            position: absolute;
+            z-index: 10;
+            font-size: 2rem;
+        }
+        img {
+            width: 8rem;
+            height: 8rem;
+            max-width: 8rem;
+        }
+        .upper {
+            border-bottom: $border-style;
+            display: flex;
+            .detailsBox {
+                flex: 1;
+                margin-left: 1.2rem;
+                div:first {
+                    display: flex;
+                }
+                .price {
+                    font-size: 1.7rem;
+                }
+            }
+        }
+        .down {
+            height: 4.5rem;
+            line-height: 4.5rem;
+            font-size: 1.5rem;
+            .totalDesc {
+                float: right;
+            }
+            .totalAmount {
+                font-size: 1.9rem;
+                font-weight: bold;
+                color: $normal-font-color;
+            }
+            cart-qty {
+                position: absolute;
+                margin-top: 1rem;
+            }
+        }
+        ion-checkbox {
+            margin-right: 1.4rem;
+            margin-top: 3rem;
+        }
+        .detail-container {
+            width: 100%
+        }
+        .trash {
+            font-size: 2rem;
+            float: right;
+        }
+    }
+    $footer-height:4.5rem;
+    .order-footer {
+        height: $footer-height;
+        background-color: white;
+        line-height: $footer-height;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-top: 1.4rem;
+        border-bottom: solid 1px #dce2e6;
+        .desc {
+            float: left;
+            color: $normal-font-color;
+            font-size: 1.5rem;
+        }
+        .amount {
+            float: right;
+            font-size: 1.5rem;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    }
+}
+
+$cart_footer_line_height: 5rem;
+.cart_footer {
+    position: fixed;
+    bottom: 5.6rem;
+    z-index: 999;
+    box-shadow: 0 -1px 8px rgba(0, 1, 1, 0.08);
+    border-width: 1px 0;
+    left: 0;
+    height: $cart_footer_line_height;
+    background-color: white;
+    width: 100%;
+    color: #666;
+    .summary {
+        line-height: $cart_footer_line_height;
+        height: $cart_footer_line_height;
+        float: left;
+        width: 35%;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .cartInfo {
+        padding-top: 0.5rem;
+        line-height: 1.1rem;
+        height: $cart_footer_line_height;
+        float: left;
+        width: 35%;
+        text-align: left;
+        font-size: 1.5rem;
+        .totalAmount {
+            font-size: 1.9rem;
+            color: $normal-font-color;
+            width: 100%;
+        }
+        .totalQuantity {
+            position: absolute;
+            top: 3px;
+            font-size: 1.2rem;
+            color: $not-important-font-color;
+        }
+    }
+    .purchase {
+        float: right;
+        line-height: $cart_footer_line_height;
+        height: $cart_footer_line_height;
+        background: #e54346;
+        width: 30%;
+        overflow: hidden;
+        font-size: 1.6rem;
+        font-family: "Microsoft YaHei";
+        color: white;
+        text-align: center;
+    }
+}

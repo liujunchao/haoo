@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            登录HAOO
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="register">
+    <form (ngSubmit)="register()" #userForm="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label>邮箱地址</ion-label>
+                <!--pattern="^[\w]+@[\w]+\.[\w]+$"-->
+                <ion-input type="text" name="email" [(ngModel)]="email" required></ion-input>
+                <!--<div [hidden]="userForm.controls.email.valid || userForm.controls.email.pristine" > 
+                    <p *ngIf="email.errors?.required">必须输入邮箱地址</p>
+                    {{userForm.controls.email.errors}}
+                </div>-->
+            </ion-item>
+            <ion-item>
+                <ion-label>输入密码</ion-label>
+                <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>确认密码</ion-label>
+                <ion-input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required></ion-input>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button ion-button type="submit" block>注册</button>
+        </div>
+    </form>
+    <div class="loginText">
+        你已经有帐号？
+    </div>
+    <div padding>
+        <button ion-button class="loginButton" block (click)="login()">登陆</button>
+    </div>
+    <div class="tip">
+        我已经阅读并同意Haoo<a class="link">隐私条例</a>
+    </div>
+</ion-content>

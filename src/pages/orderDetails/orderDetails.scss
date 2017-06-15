@@ -1,0 +1,18 @@
+.orderDetails {
+    .buttonTools {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        .button-small {
+            height: 2rem;
+            font-size: 1.4rem;
+        }
+        .button {
+            margin: 0;
+        }
+    }
+    .combine {
+        position: absolute;
+        right: 25px;
+    }
+}

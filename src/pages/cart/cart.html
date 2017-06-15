@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="source!=='rebuy'">
+            购物车
+        </ion-title>
+        <ion-title *ngIf="source==='rebuy'">
+            <ion-icon name="arrow-back" (click)="close()"></ion-icon>
+            再购买
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="cart">
+    <div class="product_card" *ngFor="let cart of cartList">
+        <div>
+            <ion-checkbox [(ngModel)]="cart.isSelected" (click)="cartCheckedStateChange(cart)"></ion-checkbox>
+        </div>
+        <div class="detail-container">
+            <div class="upper">
+                <div class="relative">
+                    <img src="{{cart.image}}">
+                    <span class="on-shelf" *ngIf="cart.status==0">已下架</span>
+                </div>
+                <div class="detailsBox">
+                    <p class="product_title">{{cart.title}}</p>
+                    <p class="state_comment">
+                        <span *ngFor="let option of options">
+                            {{option.option_name}}:{{option.option_value_name}} 
+                        </span>
+                    </p>
+                    <div>
+                        <label class="color_red price"> {{cart.price |fixed}} </label>
+                        <ion-icon name="ios-trash-outline" class="trash" (click)="deleteCart(cart)"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="down">
+                数量：
+                <cart-qty [qty]="cart" (qtyChange)="changeQuantity($event)" [setOperation]="'cart'"></cart-qty>
+                <span class="totalDesc">
+                         总计：<a  class="totalAmount">{{cart.price*cart.quantity |fixed}}</a>
+                  </span>
+            </div>
+        </div>
+
+    </div>
+</ion-content>
+
+
+
+<ion-footer class="cart_footer">
+    <div class="summary">
+        <ion-checkbox [(ngModel)]="allSelected" (ionChange)="checkedStateChange()"></ion-checkbox>全选
+    </div>
+    <div class="cartInfo">
+        <div class="totalAmount">实付款{{products_total}}元</div>
+        <!--<div class="totalQuantity" *ngIf="shipfee!=0">运费：{{shipfee}}</div>-->
+        <div class="totalQuantity">商品不含运费</div>
+    </div>
+    <div class="purchase" (click)="checkout()">
+        结算({{getCheckoutQty()}})
+    </div>
+</ion-footer>

@@ -1,0 +1,21 @@
+.deliveryInfo {
+    $formColor: #999;
+    .inputForm {
+        font-size: 1.5rem;
+        color: $formColor;
+        td:first {
+            width: 40%;
+        }
+        .identityContainer {
+            display: inline-block;
+            width: 49%;
+            .identityPic {
+                font-size: 4rem;
+                text-align: center;
+            }
+            .identityCaption {
+                text-align: center;
+            }
+        }
+    }
+}

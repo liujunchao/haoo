@@ -1,0 +1,69 @@
+.address {
+    @include panelbg();
+    .search_address{
+        background-color: #fff;
+         margin: 0 0 1rem;
+         .search {
+            width: 94%;
+            margin: 1rem;
+            .input_icon{
+                position: relative;
+                svg{
+                    position: absolute;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    left: 1rem;
+                    top: 0.8rem;
+                }
+                input{
+                    text-indent: 20px;
+                }
+            }
+            .input-group-addon {
+                background-color: #7d48fa;
+                border-color: #7d48fa;
+                color: #fff;
+            }
+        }
+    }
+   
+    .title {
+        @include getTitleHeight();
+        @include paddingGap();
+        background-color: white;
+        font-size: 1.5rem;
+        color: $not-important-font-color;
+        .toolbar {
+            float: right;
+            font-size: 2rem;
+            width: 10rem;
+            span {
+                margin: 0 2rem;
+            }
+        }
+    }
+    .panel {
+        @include paddingGap();
+        background-color: white;
+        margin-bottom: 1.1rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        .userInfo {
+            @include getFontLevel2();
+            color: black;
+            span {
+                margin-left: 2rem;
+            }
+            .defaultAddr {
+                font-size: 1.5rem;
+                color: #d39a2d;
+                float: right;
+            }
+        }
+        .address {
+            @include getFontLevel3();
+            color: $not-important-font-color;
+            background-color: white;
+        }
+    }
+}

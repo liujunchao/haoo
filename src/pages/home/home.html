@@ -1,0 +1,121 @@
+<product-detail></product-detail>
+<cart-menu></cart-menu>
+
+<ion-content class="home" (ionScroll)="scrollContent($event)" #content>
+
+    <div class="header">
+        <div>  
+            <button ion-button menuToggle class="no-shadow">
+                <ion-icon name="menu"></ion-icon> 
+            </button>
+
+            <div class="badge_container" (click)="toCartPage()">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-cart"></use> </svg>
+                <span class="badge">{{countOfCartTotal}}</span>
+            </div>
+ 
+            <div class="badge_container" (click)="gotoNotificationPage()" *ngIf="isLogin">
+                <span style="margin-right: 2px; color:white;">消息</span>
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-news"></use> </svg>
+                <div class="badge" *ngIf="countOfNotifications>0">{{countOfNotifications}}</div>
+            </div> 
+            <!--<button ion-button class="pull-right no-shadow" (click)="toCartPage()">
+                 
+                  <ion-icon name="ios-cart-outline"></ion-icon>
+                  <span class="badge">{{countOfCartTotal}}</span>
+            </button>-->
+            <!--<button ion-button class="pull-right no-shadow" (click)="gotoNotificationPage()" *ngIf="isLogin">
+                <span style="margin-right: 2px;">消息</span>
+                 <svg class="icon" aria-hidden="true"  > <use xlink:href="#icon-news"></use> </svg>
+                  <div class="badge gap" *ngIf="countOfNotifications>0">{{countOfNotifications}}</div>
+            </button>-->
+        </div>
+        <div class="input-group search"> 
+            <input type="text" class="form-control" placeholder="搜索商品名称" [(ngModel)]="searchContent">
+            <div class="input-group-addon" (click)="search()">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-search" ></use> </svg>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-container home-swiper-container" #swiper>
+
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of banners">
+                <a (click)="linkProductOrCategory(item)">
+                    <img src="{{item.image}}" alt="{{item.title}}" />
+                </a>
+            </div>
+        </div>
+        <div class="swiper-pagination home-swiper-pagination"></div>
+
+    </div>
+    <!-- /input-group -->
+    <div class="navBox">
+        <div class="productNavLeft">
+            <ul class="category_nav  ">
+                <li role="presentation" *ngFor="let item of categories" (click)="changeCategory(item)" [ngClass]="{'category': item.name===selected, 'other': item.name!==selected}">
+                    <div class="decorationLine" *ngIf="item.name===selected"></div>
+                    <a href="#">{{item.name}}  
+                        <label class="quantity-identifier" *ngIf="item.name === '家居'" >12</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="productNavRight" #productContainer>
+            <div class="product_card_container" *ngIf="'全部分类'!==selected && cartList && cartList.length">
+                <div class="product_card" *ngFor="let cart of cartList">
+                    <div>
+                        <svg class="icon" aria-hidden="true" (click)="downloadImage(cart.image)"> <use xlink:href="#icon-download0"></use> </svg>
+                        <img src="{{cart.image}}" style=" width:8rem;height:7.5rem;  " (click)="gotoProductDetail(cart)">
+                    </div>
+                    <div class="detailsBox">
+                        <p class="product_title">{{cart.title}}</p>
+                        <div class="discount" *ngIf="cart.discount_start_time!=''&& cart.discount_end_time!=''">折扣时间：{{cart.discount_start_time}}-{{cart.discount_end_time}}</div>
+                        <div>
+                            <label class="price"> {{cart.price|fixed}} </label>
+                            <label class="price color_red marginLeft1" *ngIf="cart.selected_quantity!=0">X{{cart.selected_quantity}}</label>
+                            <!--<cart-qty [qty]="cart"></cart-qty>-->
+
+                            <button small class="addToCart" (click)="addToCart(cart)">
+                                <ion-icon name="ios-add" ></ion-icon>
+                                添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngFor="let item of categories">
+                    <ion-infinite-scroll (ionInfinite)="doInfinite($event,item)" *ngIf="showCategoryLoading(item)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                        </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </div>
+
+            </div>
+            <div *ngIf="'全部分类'===selected" class="cateItemContainer">
+
+                <div *ngFor="let cate of categoriesList" class="itemContainer{{cate.index}}">
+                    <div class="cateTitle">
+                        <a class="cateTitleDesc">
+                            <ion-icon name="camera"></ion-icon> {{cate.name}}
+                        </a>
+                        <a class="cateAllFlag" (click)="showCategoryProducts(cate)">全部商品 &gt;</a>
+                    </div>
+                     <a *ngFor="let item of cate.childs" class="cateItem" (click)="showCategoryProducts(item)">  {{" "+item.name+" "}}  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ion-content>
+
+<ion-footer class="footer">
+    <div class="summary">
+        共{{quantity_total}}件
+    </div>
+    <div class="totalAmount">
+        共{{products_total}}元
+    </div>
+    <div class="purchase" (click)="gotSavePage()">
+        已选好
+    </div>
+</ion-footer>

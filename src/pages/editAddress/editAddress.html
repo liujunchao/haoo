@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            送货地址
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label><span class="color_red">*</span>收件人姓名：</ion-label>
+            <ion-input [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label><span class="color_red">*</span>联系电话：</ion-label>
+            <ion-input [(ngModel)]="phone"></ion-input>
+        </ion-item>
+        <ion-item (click)="getProvinces()">
+            <ion-label><span class="color_red">*</span>选择省：</ion-label>
+            <ion-input [disabled]="true" [value]="location.zone.text" *ngIf="location!=null"></ion-input>
+        </ion-item>
+        <ion-item (click)="getCities()">
+            <ion-label><span class="color_red">*</span>选择市：</ion-label>
+            <ion-input [disabled]="true" [value]="location.city.text" *ngIf="location!=null"></ion-input>
+        </ion-item>
+        <ion-item (click)="getDistricts()">
+            <ion-label><span class="color_red">*</span>选择区：</ion-label>
+            <ion-input [disabled]="true" [value]="location.district.text" *ngIf="location!=null"></ion-input>
+        </ion-item>
+        <!--<ion-item>  
+            <ion-label>城市</ion-label>
+            <ion-select [(ngModel)]="city">
+                <ion-option value="gz">广州</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>地区</ion-label>
+            <ion-select [(ngModel)]="area">
+                <ion-option value="th">天河</ion-option>
+            </ion-select>
+        </ion-item>-->
+        <ion-item>
+            <ion-label><span class="color_red">*</span>详细地址：</ion-label>
+            <ion-input [(ngModel)]="address"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>身份证号码：</ion-label>
+            <ion-input [(ngModel)]="identity"></ion-input>
+        </ion-item>
+        <ion-item>
+            <label class="labelText">身份证附件</label>
+            <img-add [data]="imgPositive" [desc]="'正面'"></img-add>
+            <img-add [data]="imgNegative" [desc]="'反面'"></img-add>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+<ion-footer>
+    <button ion-button full (click)="save()">保存</button> 
+</ion-footer>

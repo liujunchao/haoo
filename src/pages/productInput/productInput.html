@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            产品录入
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="productInput">
+    <ion-list>
+        <ion-item>
+            <ion-label>产品名称</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <label class="labelText" style=" top:0rem;">产品编号</label>
+            <span class="scaner" (click)="scan()" *ngIf="!isScan">[扫一扫]</span>
+            <span class="barcode" *ngIf="isScan">{{barcode.text}}</span>
+            <span class="rescaner" (click)="scan()" *ngIf="isScan">[重新扫码]</span>
+        </ion-item>
+        <ion-item>
+            <ion-label>采购价</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>结算价</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>库存</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>库位</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>净重</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <label class="labelText">体积</label>
+            <table class="size_table">
+                <tr>
+                    <td>长</td>
+                    <td><input type="text" /></td>
+                    <td>宽</td>
+                    <td><input type="text" /></td>
+                    <td>高</td>
+                    <td><input type="text" /></td>
+                </tr>
+            </table>
+        </ion-item>
+        <ion-item>
+            <label class="labelText">产品图片</label>
+            <img-add></img-add>
+        </ion-item>
+        <ion-item>
+            <label class="labelText">产品描述</label>
+            <textarea></textarea>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col width-50>
+                <button full (click)="save()">保存</button>
+            </ion-col>
+            <ion-col width-50>
+                <button full (click)="cancel()">取消</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

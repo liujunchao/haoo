@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            退款详情
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="cart">
+    <div style="margin:1rem">
+        <span>订单编号:<b>123343423425345</b></span>
+        <span class="label label-danger pull-right" style="margin:1rem;font-size:1.5rem">未发货</span>
+    </div>
+    <div style="margin:1rem">
+        <span>下单时间:20160909  10：33</span>
+    </div>
+    <table class="table  table-striped" radio-group>
+        <thead>
+            <th class="align_center" style="width:40%">名称</th>
+            <th class="align_center" style="width:30%">数量</th>
+            <th class="align_center" style="width:20%">金额</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cart of order.items">
+
+                <td>
+
+                    <img src="{{cart.url}}" style="width:2rem;height:2rem;display:inline;">
+                    <em>{{cart.title}}</em>
+                </td>
+                <td class="align_center">
+                    {{cart.quantity}}
+                </td>
+                <td style=" color:red" class="align_center align_vertical">¥{{cart.price}}</td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="totaldesc">商品总金额:<label class="total">{{getTotalAmount()}}</label></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div><label>退款原因：</label></div>
+                    <textarea style=" width:100%; height:14rem"></textarea>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</ion-content>

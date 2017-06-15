@@ -1,0 +1,106 @@
+.order {
+    $statusFont: #666666;
+    background-color: #ecf0f3;
+    ion-segment {
+        background-color: white;
+    }
+    .product_card {
+        padding: 1.5rem;
+        width: 100%;
+        display: flex;
+        padding-bottom: 2.5rem;
+        border-bottom: solid 1px #dce2e6;
+        background-color: #f5f5f5;
+        img {
+            width: 8rem;
+            height: 8rem;
+        }
+        .detailsBox {
+            width: 15.5rem;
+            margin-left: 1.2rem;
+            div:first {
+                display: flex;
+            }
+            cart-qty {
+                float: right;
+            }
+            .price {
+                font-size: 1.4rem;
+            }
+            .product_title {
+                margin-top: 0;
+                font-size: 1.4rem;
+                line-height: 1.7rem;
+                color: #626466;
+            }
+            .state_comment {
+                font-size: 1.2rem;
+                line-height: 1.4rem;
+                color: #c4c8cc;
+            }
+        }
+    }
+    $footer-height:4.5rem;
+    $header-height:4.4rem;
+    @mixin footerStyle($footer-height) {
+        height: $footer-height;
+        background-color: white;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        border-bottom: solid 1px #dce2e6;
+        .price_sum {
+            font-size: 1.9rem;
+        }
+    }
+    .order-footer {
+        font-size: 1rem;
+        @include footerStyle($footer-height);
+        //padding-top: 1.5em;
+        line-height: 4.3rem;
+        .summary {
+            color: $statusFont;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin: 0;
+            float: right;
+        }
+    }
+    .function-footer {
+        @include footerStyle($footer-height);
+        position: relative;
+        .button {
+            margin-top: 0.6rem;
+            margin-left: 1rem;
+            float: right;
+            font-size: 1.2rem;
+        }
+        .remark{
+            position: absolute;
+            bottom: 1rem;
+            span{
+                color: #999;
+            }
+        }
+    }
+    .order-header {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        height: $header-height;
+        background-color: white;
+        line-height: $header-height;
+        .buyer {
+            font-size: 1.5rem;
+        }
+        .payment-status {
+            font-size: 1.5rem;
+            color: $statusFont;
+            margin-top: 1.1rem;
+            float: right;
+        }
+        .date {
+            font-size: 1.5rem;
+            color: #c4c8cc;
+        }
+    }
+}

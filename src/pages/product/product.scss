@@ -1,0 +1,170 @@
+.product-details {
+    $panel-height: 6.2rem;
+    $padding-gap: 1rem;
+    $detail-panel-height: 4.5rem;
+    $product-font-size: 1.7rem;
+    background-color: #edf0f2;
+    .cart-pic {
+        height: 25rem;
+        img {
+            max-height: 25rem;
+        }
+        background-color: white;
+    }
+    .title-panel {
+        height: $panel-height;
+        line-height: $panel-height;
+        font-size: $product-font-size;
+        padding-left: $padding-gap;
+        padding-right: $padding-gap;
+        background-color: white;
+    }
+    .cart-panel {
+        height: $panel-height;
+        line-height: $panel-height;
+        font-size: $product-font-size;
+        padding-left: $padding-gap;
+        padding-right: $padding-gap;
+        background-color: white;
+        .price {
+            font-size: 2.5rem;
+            color: $bold-price;
+        }
+        .fee {
+            font-size: 1.2rem;
+            color: $not-important-font-color;
+            margin-left: 1.9rem;
+        }
+        cart-qty {
+            margin-top: 2rem;
+            position: absolute;
+            right: 1rem;
+        }
+    }
+    .property-panel {
+        margin-top: 1rem;
+        padding-left: $padding-gap;
+        padding-right: $padding-gap;
+        background-color: white;
+        .title {
+            height: $detail-panel-height;
+            line-height: $detail-panel-height;
+            font-size: $product-font-size;
+            color: #000000;
+            border-bottom: $border-style;
+            margin-bottom: 1.3rem;
+        }
+        .property-title {
+            height: 2.8rem;
+            line-height: 2.8rem;
+            color: $normal-font-color;
+            font-size: $product-font-size;
+        }
+        $propertyHeight:2.8rem;
+        $propertyRadius:0.2rem;
+        .property-choose {
+            height: $propertyHeight;
+            width: 7.5rem;
+            line-height: $propertyHeight;
+            text-align: center;
+            color: #626466;
+            border-radius: $propertyRadius;
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            border: 1px solid #dcdfe0;
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .property-selected {
+            color: #7d48fa;
+            border-color: #7d48fa;
+        }
+    }
+    .description-panel {
+        margin-top: 1rem;
+        padding-left: $padding-gap;
+        padding-right: $padding-gap;
+        background-color: white;
+        .title {
+            height: $detail-panel-height;
+            line-height: $detail-panel-height;
+            font-size: $product-font-size;
+            color: #000000;
+            border-bottom: $border-style;
+        }
+        .content {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            color: #626466;
+            font-size: 1.4rem;
+            line-height: 2.3rem;
+        }
+    }
+    .description-pic {
+        margin-top: 2rem;
+        text-align: center;
+        img {
+            max-height: 25rem;
+        }
+    }
+    $banner-height: 25rem;
+    $flag-height:0.9rem;
+    .banner {
+        width: 100%;
+        .banner_top {
+            width: 100%;
+            position: relative;
+            ol {
+                overflow: hidden;
+                height: $banner-height;
+                padding: 0;
+                .imageItem {
+                    float: left;
+                    width: 100%;
+                    list-style: none;
+                    text-align: center;
+                }
+            }
+        }
+        .circle-panel {
+            position: absolute;
+            bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .small {
+            // position: absolute;
+            // bottom: 0.6rem;
+            li {
+                list-style: none;
+                float: left;
+                border-radius: 50%;
+                background-color: #fff;
+                width: $flag-height;
+                height: $flag-height;
+                margin-left: 1rem;
+                &.current {
+                    background-color: #999;
+                }
+            }
+        }
+    }
+    .zero {
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+        bottom: 1rem;
+        left: 1rem;
+        position: absolute;
+    }
+    .product-swiper-container {
+        height: $banner-height;
+        img {
+            width: 100%;
+            height: $banner-height;
+        }
+    }
+}

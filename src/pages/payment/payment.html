@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            支付
+        </ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="payment">
+    <div class="amount">
+        <span class="title">订单金额</span>
+        <span class="cny">{{grand_total}}元</span>
+    </div>
+    <div class="list">
+        <div class="item">
+            <span class="title">支付方式</span>
+        </div>
+        <div class="item">
+            <svg class="icon pay" aria-hidden="true"> <use xlink:href="#icon-wechat" ></use> </svg>
+            <span class="name">微信支付</span>
+            <span class="desc">微信安全支付</span>
+            <svg class="icon  " aria-hidden="true" (click)="chooseWechat()"> 
+                <use xlink:href="#icon-jump1" ></use> 
+            </svg>
+
+        </div>
+        <div class="item">
+            <svg class="icon pay" aria-hidden="true"> <use xlink:href="#icon-alipay1" ></use> </svg>
+            <span class="name">支付宝支付</span>
+            <span class="desc">支付宝智能安全加密技术</span>
+            <svg class="icon" aria-hidden="true" (click)="chooseAlipay()"> 
+                <use xlink:href="#icon-jump1" ></use> 
+            </svg>
+
+        </div>
+    </div>
+</ion-content>

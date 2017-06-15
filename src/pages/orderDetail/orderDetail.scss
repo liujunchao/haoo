@@ -1,0 +1,41 @@
+.save {
+    .order-status {
+        float: right;
+        display: inline;
+        background-color: #fc39ac;
+        color: white;
+        border-radius: 3px;
+        padding: 0.2rem 0.5rem;
+        /* position: absolute; */
+        margin: 0.6rem;
+    }
+}
+
+$footerHeight:4rem;
+.return-line {
+    border-bottom: solid 1px #dce2e6;
+    height: $footerHeight;
+    background-color: white;
+    width: 100%;
+    color: #666;
+    .summary {
+        line-height: $footerHeight;
+        height: $footerHeight;
+        float: left;
+        width: 55%;
+        font-size: 1.5rem;
+        margin-left: 2.1rem;
+    }
+    .return {
+        float: right;
+        line-height: $footerHeight;
+        height: $footerHeight;
+        background: #7d48fa;
+        width: 30%;
+        overflow: hidden;
+        font-size: 1.6rem;
+        font-family: "Microsoft YaHei";
+        color: white;
+        text-align: center;
+    }
+}

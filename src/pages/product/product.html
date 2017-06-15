@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            商品详情
+            <!--<ion-icon name="share" class="pull-right"></ion-icon>-->
+        </ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="product-details">
+    <div class="swiper-container product-swiper-container">
+
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of banners">
+                <a>
+                    <svg class="icon" aria-hidden="true" (click)="downloadImage(item)" style="position: absolute;left: 8px;bottom: 8px;z-index:10"> <use xlink:href="#icon-download"></use> </svg>
+                    <img src="{{item}}" />
+                </a>
+            </div>
+        </div>
+        <div class="swiper-pagination product-swiper-pagination"></div>
+        <div class="zero" (click)="downloadImage()" *ngIf="currentPicture!=null">
+            <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-download2"></use> </svg>
+        </div>
+    </div>
+
+    <div class="title-panel" style=" height:auto;line-height: 2.2rem;">
+        {{cart.title}}
+    </div>
+    <div class="cart-panel">
+        <label class="price">{{cart.price|fixed}}</label>
+        <label class="fee">邮费：{{cart.shipfee}}</label>
+        <cart-qty [qty]="cart"></cart-qty>
+    </div>
+    <div class="property-panel" *ngIf="cart.options&&cart.options.length">
+        <div class="title vertical-center">
+            <svg class="icon mr-1rem" aria-hidden="true"> <use xlink:href="#icon-propertie"></use> </svg> 选择属性
+        </div>
+        <div *ngFor="let property of cart.options">
+            <div class="property-title">{{property.option_name}}</div>
+            <div class="property-choose" *ngFor="let optionValue of property.option_values" [ngClass]="{'property-selected': optionValue.isSelected}" (click)="selectProperty(property,optionValue)">
+                {{optionValue.option_value_name}}
+            </div>
+        </div>
+    </div>
+
+    <div class="description-panel ">
+        <div class="title vertical-center">
+            <svg class="icon mr-1rem" aria-hidden="true"> <use xlink:href="#icon-detail"></use> </svg> 商品详情
+        </div>
+        <div class="content" #content>
+
+        </div>
+        <div class="description-pic" *ngFor="let url of cart.description_images">
+            <img src="{{url}}" />
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="save_footer">
+    <div class="summary">
+        实付款{{getGrandTotal()}}元
+    </div>
+    <div class="warning" (click)="addToCarts()">
+        加入购物车
+    </div>
+    <div class="purchase" (click)="payment()">
+        立即购买
+    </div>
+</ion-footer>

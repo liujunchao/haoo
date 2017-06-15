@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            个人信息
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="personalInfo">
+    <form (ngSubmit)="save()">
+        <div class="form-title">
+            基本信息
+        </div>
+        <div class="form-body">
+
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-message"></use> </svg>
+                <span>邮箱地址</span>
+                <input type="text" placeholder="请填写邮箱地址" [(ngModel)]="user.email" name="email" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-personal"></use> </svg>
+                <span>分销商名称</span>
+                <input type="text" placeholder="请填写分销商名称" [(ngModel)]="user.name" name="name" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-telephone"></use> </svg>
+                <span>联系电话</span>
+                <input type="text" placeholder="请填写联系电话" [(ngModel)]="user.phone" name="phone" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-wechat"></use> </svg>
+                <span>微信号</span>
+                <input type="text" placeholder="请填写微信号" [(ngModel)]="user.wx" name="wx" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-usa"></use> </svg>
+                <span>所在国家</span>
+                <input type="text" placeholder="请填写所在国家" [(ngModel)]="user.zone" name="zone" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-city"></use> </svg>
+                <span>所在城市</span>
+                <input type="text" placeholder="请填写所在城市" [(ngModel)]="user.city" name="city" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-address"></use> </svg>
+                <span>详细地址</span>
+                <input type="text" placeholder="请填写详细地址" [(ngModel)]="user.address" name="address" />
+            </div>
+            <div class="form-line">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-alipay1"></use> </svg>
+                <span>支付宝帐号</span>
+                <input type="text" placeholder="请填写支付宝帐号" [(ngModel)]="user.alipay" name="alipay" />
+            </div>
+        </div>
+        <div padding><button ion-button type="submit" full>保存</button></div>
+    </form>
+
+</ion-content>

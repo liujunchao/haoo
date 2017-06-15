@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            我的订单
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content [(ngModel)]="orderType" class="order">
+    <ion-segment>
+        <ion-segment-button value="{{item.value}}" *ngFor="let item of orderTypes" (ionSelect)="getOrdersByType(item)">
+            {{item.desc}}
+        </ion-segment-button>
+    </ion-segment>
+    <div *ngFor="let order of orders">
+        <div>
+            <div class="order-header">
+                <label class=" buyer">收件人：{{order.name}}</label>
+
+                <label class="payment-status"> {{order.order_type_name}}</label>
+            </div>
+            <div (click)="transferView(order)" class="product_card" *ngFor="let itm of order.products_list">
+                <div class="relative"> 
+                    <img src="{{itm.image}}"> 
+                    <span class="on-shelf" *ngIf="itm.status ===0">已下架</span>
+                </div>
+                <div class="detailsBox">
+                    <p class="product_title">{{itm.title}}</p>
+                    <p class="state_comment">
+                        <span *ngFor="let option of itm.options">
+                            {{option.option_name}}:{{option.option_value_name}} 
+                        </span>
+                    </p>
+                    <div>
+                        <label>X {{itm.quantity}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="order-footer">
+                <label class="date">{{order.add_time}}</label>
+                <div class="summary">共{{order.quantity_total}}件 实付款：<a class="price_sum">{{order.grand_total|fixed}}</a></div>
+            </div>
+            <div class="function-footer" [style.height]="(order.order_type==5 && order.admin_note !='')?'6rem' : '4.5rem'">
+                <button ion-button color="danger" (click)="payment(order)" *ngIf="order.order_type==1">付款</button>
+                <button ion-button (click)="purchaseAgain(order)" *ngIf=" order.order_type==1 || order.order_type==2|| order.order_type==3 ||order.order_type==4||order.order_type==5">再购买</button>
+                <button ion-button color="light" (click)="cancelOrder(order)" *ngIf="order.order_type==1">取消订单</button>
+                <button ion-button color="light" (click)="cancelOrder(order)" *ngIf="order.order_type==2||order.order_type==5">取消交易</button>
+                <button ion-button color="light" (click)="contactClientService(order)" *ngIf="order.order_type==5">联系客服</button>
+                <div class="remark" *ngIf=" order.order_type==5 && order.admin_note !=''">备注:<span>{{order.admin_note}}</span></div>
+            </div>
+        </div> 
+
+
+    </div>
+    <div *ngFor="let item of orderTypes">
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,item)" *ngIf="showOrderTypeLoading(item)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    <div *ngIf="orders.length===0" class="panel-nothing">
+        <div class="panel-nothing-inner">
+            <div class="nothing-img">
+                <svg class="icon" aria-hidden="true"> 
+                    <use xlink:href="#icon-connection_failed"></use> 
+                </svg>
+            </div>
+            <div>抱歉，您暂时没有相关订单信息</div>
+        </div>
+    </div>
+</ion-content>

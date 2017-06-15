@@ -1,0 +1,20 @@
+<div class="popup-product-detail">
+    <div class="detail">
+        <img src="{{cart.image}}" /> <span class="price">{{cart.price|fixed}}</span>
+    </div>
+    <div class="qty">
+        <span>数量</span>
+        <cart-qty [qty]="cart"></cart-qty>
+    </div>
+    <div class="property-panel" *ngIf="viewProperties &&cart.options &&cart.options.length">
+        <div *ngFor="let property of cart.options">
+            <div class="property-title">{{property.option_name}}</div>
+            <div class="property-choose" *ngFor="let optionValue of property.option_values" [ngClass]="{'property-selected': optionValue.isSelected}" (click)="selectProperty(property,optionValue)">
+                {{optionValue.option_value_name}}
+            </div>
+        </div>
+    </div>
+    <div class="add" (click)="addToCart()">
+        添加
+    </div>
+</div>

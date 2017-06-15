@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            订单明细
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="orderDetails">
+    <ion-segment [(ngModel)]="orderType">
+        <ion-segment-button value="all">
+            所有
+        </ion-segment-button>
+        <ion-segment-button value="notSettle">
+            未采购
+        </ion-segment-button>
+        <ion-segment-button value="shortage">
+            缺货
+        </ion-segment-button>
+        <ion-segment-button value="settle">
+            已采购
+        </ion-segment-button>
+        <ion-segment-button value="delivery">
+            已发货
+        </ion-segment-button>
+        <ion-segment-button value="purchase">
+            已结算
+        </ion-segment-button>
+    </ion-segment>
+    <div *ngFor="let order of orders">
+        <ion-card *ngIf="(orderType === 'all') || isOrderMatch(order)">
+            <ion-card-header style="padding:4px;">
+                <label>
+                    <p>订单号：
+                        <span [ngClass]="{color_red: order.items.length>1}">20160909000002 </span>
+                        <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown" (click)="expandMore(order)" *ngIf="order.onlyShowMainItem&&order.items.length>1"  ></ion-icon>
+                        <ion-icon ios="ios-arrow-dropup" md="md-arrow-dropup" (click)="hideMore(order)"  *ngIf="!order.onlyShowMainItem&&order.items.length>1" ></ion-icon>
+                    </p> 
+                    <p>下单时间：2016/08/16 11：32</p>
+              </label>
+                <button small *ngIf="canCombineDelivery(order)" class="combine"> 合并发货</button>
+            </ion-card-header>
+            <ion-list>
+                <ion-item *ngFor="let itm of getItems(order)">
+                    <img-show [url]="itm.url" class="pull-left" [badge]="itm.badge"></img-show>
+                    <h2>{{itm.title}}</h2>
+                    <p>采购价:<label class="color_red">{{itm.price}}</label></p>
+                    <p>折算价:<label class="color_red">{{itm.price}}</label></p>
+                    <p>数量:<label class="color_red">{{itm.quantity}}</label></p>
+                    <div class="buttonTools">
+                        <button (click)="showDelivery()" small *ngIf="itm.bStatus === 'delivery'"> 发货信息</button>
+                        <button (click)="purchase(itm)" small *ngIf="itm.bStatus === 'settle' "> 取消采购 </button>
+                        <button (click)="purchase(itm)" small *ngIf="itm.bStatus === 'notSettle' || itm.bStatus === 'shortage'"> 采购 </button>
+                        <br/>
+                        <button (click)="lack()" small *ngIf="itm.bStatus === 'notSettle' || itm.bStatus === 'shortage'"> 缺货 </button>
+                        <button (click)="showDelivery()" small *ngIf="itm.bStatus === 'settle'"> 确认发货</button>
+                    </div>
+
+
+                </ion-item>
+            </ion-list>
+            <!--<ion-card-footer>
+                <label class="pull-left color_red" *ngIf="canShowShortage(order)">缺货数量：2</label>
+                <p class="pull-right">共{{order.items.length}}件商品 结算金额：<a class="price_sum">¥20</a></p>
+            </ion-card-footer>-->
+        </ion-card>
+    </div>
+
+</ion-content>

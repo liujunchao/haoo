@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            交易详情 
+        </ion-title>
+    </ion-navbar> 
+</ion-header> 
+ 
+<ion-content >
+    <div class="paymentSuccess"> 
+           <div >
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-slected1" ></use> </svg>
+                <span>支付成功!</span>
+           </div>
+            <div>￥{{json.total_amount}}</div>
+    </div>
+    <ion-list>
+        <ion-item>
+            <ion-label>
+              <span >商家</span>
+              <span class="pull-right"> 广州满翼贸易有限公司</span>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label> 
+              <span >交易单号</span>
+              <span class="pull-right">{{json.trade_no}}</span>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+               <span>交易时间</span>
+               <span class="pull-right">{{json.timestamp}}</span>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <span>支付方式</span>
+               <span class="pull-right">{{json.method == "alipay_direct" ? "支付宝" : "微信"}}</span>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <span>当前状态</span> 
+                <span class="pull-right">支付成功</span>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+   <div style="text-align: center">
+        <button ion-button padding (click)="returnOrder()"  class="button-ios-light" style="background-color:#f4f4f4;color:#666 ">查看订单</button>
+         <button ion-button padding (click)="returnHome()" class="button-ios-light" style="background-color:#f4f4f4 ;color: #666">返回首页</button>
+   </div>
+</ion-content>

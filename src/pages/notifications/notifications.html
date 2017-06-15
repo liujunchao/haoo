@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            通知
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="notifications">
+    <div class="panel">
+        <div class="line" (click)="transferView('new')">
+            <div class="icon-panel">
+                <svg class="icon" aria-hidden="true">   <use xlink:href="#icon-new"></use>   </svg>
+                <div class="badge" *ngIf="newCount>0">{{newCount}}</div>
+            </div>
+
+            <span>新品通知</span>
+        </div>
+        <div class="line" (click)="transferView('delivery')">
+            <div class="icon-panel">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-cart"></use> </svg>
+                <div class="badge" *ngIf="deliveryCount>0">{{deliveryCount}}</div>
+            </div>
+
+            <span>发货通知</span>
+        </div>
+        <div class="line" (click)="transferView('return')">
+            <div class="icon-panel">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-return_goods"></use> </svg>
+                <div class="badge" *ngIf="returnCount>0">{{returnCount}}</div>
+            </div>
+
+            <span>退货通知</span>
+        </div>
+        <div class="line" (click)="transferView('refund')">
+            <div class="icon-panel">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-return"></use> </svg>
+                <div class="badge" *ngIf="refundCount>0">{{refundCount}}</div>
+            </div>
+
+            <span>退款通知</span>
+        </div>
+    </div>
+</ion-content>

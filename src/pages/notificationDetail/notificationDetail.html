@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <span *ngIf="type==='new'">新品通知</span>
+            <span *ngIf="type==='delivery'">发货通知</span>
+            <span *ngIf="type==='return'">退货通知</span>
+            <span *ngIf="type==='refund'">退款通知</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="order">
+    <div *ngFor="let itm of products">
+        <div class="order-header">
+            <label class=" buyer">{{itm.notice_time}}</label>
+        </div>
+        <div class="product_card">
+            <div>
+                <img src="{{itm.image}}">
+            </div>
+            <div class="detailsBox">
+                <p class="product_title">{{itm.title}}</p>
+                <div>
+                    <label>{{itm.price}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            HAOO客服
+        </ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="CustomerService" #content>
+    <div *ngFor="let item of messages">
+        <div class="time">
+            {{item.add_date}}
+        </div>
+        <div class="talk-right" *ngIf="item.role==2">
+            {{item.msg}}
+        </div>
+        <div class="talk-left" *ngIf="item.role==1">
+            {{item.msg}}
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="CustomerService-footer">
+    <div class="inputOutlet"><input type="text" [(ngModel)]="msg" /></div>
+    <button ion-button small (click)="submit()">发送</button>
+</ion-footer>

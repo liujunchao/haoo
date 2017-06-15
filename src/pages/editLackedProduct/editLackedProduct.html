@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon name="arrow-back" (click)="close()"></ion-icon>
+            缺货
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>采购数量</ion-label>
+            <ion-input>2</ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>缺货数量</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <button full (click)="confirm()">确定</button>
+</ion-footer>

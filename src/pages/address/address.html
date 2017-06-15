@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            选择收货地址
+        </ion-title>
+        <span class="operation-right" (click)="toggleEditModel()" *ngIf="isEditMode === false">
+                管理
+        </span>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="address">
+    <div class="search_address">
+        <div class="input-group search">
+            <div class="input_icon">
+                <svg class="icon" aria-hidden="true"> <use xlink:href="#icon-search2"></use></svg>
+                <input type="text" class="form-control" placeholder="输入关键字快速查询" [(ngModel)]="searchContent" style="border-top-right-radius:0;border-bottom-right-radius:0;">
+            </div>
+            <div class="input-group-addon" (click)="goSearch()">查询</div>
+        </div>
+    </div>
+    <div class="address_container">
+        <div *ngFor="let addr of addressList">
+            <div class="title" *ngIf="isEditMode === true">
+                <ion-checkbox checked="{{addr.default == '1'?'true':'false'}}" (ionChange)="changeDefault(addr)"></ion-checkbox>
+                <span *ngIf="addr.default == '1'">默认地址</span>
+                <span *ngIf="addr.default == '0'">非默认地址</span>
+                <div class="toolbar">
+                    <svg class="icon" aria-hidden="true" (click)="edit(addr)"> <use xlink:href="#icon-edit" ></use> </svg>
+                    <span>|</span>
+                    <svg class="icon" aria-hidden="true" (click)="remove(addr)"> <use xlink:href="#icon-delect"></use> </svg>
+
+                </div>
+            </div>
+            <div class="panel" (click)="chooseAddress(addr)">
+                <p class="userInfo">{{addr.name}} <span>{{addr.phone}}</span>
+                    <!--<span class="defaultAddr" *ngIf="!isEditMode&&addr.address_id===addressChosen.address_id">默认地址</span>-->
+                </p>
+                <p class="address">{{addr.zone}}{{addr.city}}{{addr.district}}{{addr.address}}</p>
+            </div>
+        </div>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多商品中">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    <div padding *ngIf="isEditMode === true">
+        <button ion-button full (click)="newAddress()">新建地址</button> 
+    </div>
+      <div *ngIf="addressList.length===0 && isNothing == true" class="panel-nothing"> 
+        <div class="panel-nothing-inner">
+            <div class="nothing-img">
+                <svg class="icon" aria-hidden="true"> 
+                    <use xlink:href="#icon-connection_failed"></use> 
+                </svg>
+            </div>
+            <div>抱歉，没有对应的数据</div>
+        </div>
+    </div>
+</ion-content>
