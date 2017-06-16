@@ -101,19 +101,11 @@
   },
   {
     "file": "build/main.css",
-    "hash": "f1f41cbb1daefd51ebd3ad3742627c88"
-  },
-  {
-    "file": "build/main.css.map",
-    "hash": "37a6259cc0c1dae299a7866489dff0bd"
+    "hash": "79e5cd2c3bea6c9fc3e4131e827a9a91"
   },
   {
     "file": "build/main.js",
-    "hash": "56d3bc458cab94e44bf1f18daa87b225"
-  },
-  {
-    "file": "build/main.js.map",
-    "hash": "ccf754165c873269daeca26050813f09"
+    "hash": "7c0d00fd48b6afe83d8604baa9a85534"
   },
   {
     "file": "build/polyfills.js",
@@ -125,7 +117,7 @@
   },
   {
     "file": "download.js",
-    "hash": "7ecf74e2cdbfc141e5ea96a13cba27c4"
+    "hash": "1b7d3f601debf9bd00cf56cb866e0121"
   },
   {
     "file": "home.html",
@@ -141,7 +133,7 @@
   },
   {
     "file": "index.html",
-    "hash": "8ae4e59c0d3984b9a681d44346c53312"
+    "hash": "5c11287055bea3e8b133d2faaf85fd6e"
   },
   {
     "file": "lib/icon/icon.js",
@@ -205,6 +197,6 @@
   },
   {
     "file": "web.config",
-    "hash": "b290c88817c2cc34b83317e3fc16ea12"
+    "hash": "548a5c93618528042ddc463e81b90c12"
   }
 ]
